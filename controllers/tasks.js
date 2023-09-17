@@ -7,7 +7,7 @@ export const getAllTasks = async (req, res) => {
 
     res.json(tasks)
   } catch (error) {
-    res.status(error.status || 400).json({ message: error })
+    res.status(error.status || 400).json({ message: error.message })
   }
 }
 
@@ -18,7 +18,7 @@ export const addTask = async (req, res) => {
 
     res.json(task)
   } catch (error) {
-    res.status(error.status || 400).json({ message: error })
+    res.status(error.status || 400).json({ message: error.message })
   }
 }
 
