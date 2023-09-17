@@ -18,25 +18,50 @@ let currentId = 1
 /**
  * export class TaskModel {
  *
- *
+ * */
+export class TaskModel {
   /**
    * Fetches all tasks.
    * @name TaskModel.getAllTasks
    * @static
    * @returns {Array<Object>} Array of tasks.
    */
+  static getAllTasks () {
+    return tasks
+  }
 
-/**
-   * Adds a new task to the list.
-   * @name TaskModel.addTask
-   * @static
-   * @param {string} description - The description of the task.
-   * @returns {Object} The new task object.
-   */
+  /**
+ * Adds a new task to the list.
+ * @name TaskModel.addTask
+ * @static
+ * @param {string} description - The description of the task.
+ * @returns {Object} The new task object.
+ */
+  static addTask (description) {
+    const newTask = {
+      id: currentId++,
+      description
+    }
+    tasks.push(newTask)
 
-/**
-   * Deletes a task from the list by its ID.
-   * @name TaskModel.deleteTask
-   * @static
-   * @param {number} id - The ID of the task to delete.
-   */
+    return newTask
+  }
+
+  /**
+ * Deletes a task from the list by its ID.
+ * @name TaskModel.deleteTask
+ * @static
+ * @param {number} id - The ID of the task to delete.
+ */
+  static deleteTask (id) {
+    const taskIndex = tasks.findIndex((task) => task.id === id)
+
+    if (taskIndex) {
+      tasks.splice(taskIndex, 1)
+
+      return tasks
+    }
+
+    throw new Error("Task to be deleted doesn't exist")
+  }
+}
