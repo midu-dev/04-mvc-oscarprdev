@@ -9,5 +9,5 @@ content-type: application/json
 }
 
 ###
-DELETE  http://localhost:1234/tasks/2
+DELETE  http://localhost:1234/tasks/4
 

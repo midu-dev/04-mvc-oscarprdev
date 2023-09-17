@@ -1,27 +1,35 @@
 // importar modelo
 import { TaskModel } from '../models/task.js'
 
-export const getAllTasks = (req, res) => {
-  const tasks = TaskModel.getAllTasks()
+export const getAllTasks = async (req, res) => {
+  try {
+    const tasks = await TaskModel.getAllTasks()
 
-  res.status(200).json(tasks)
+    res.json(tasks)
+  } catch (error) {
+    res.status(error.status || 400).json({ message: error })
+  }
 }
 
-export const addTask = (req, res) => {
-  const { description } = req.body
-  const task = TaskModel.addTask(description)
+export const addTask = async (req, res) => {
+  try {
+    const { description } = req.body
+    const task = await TaskModel.addTask(description)
 
-  res.status(200).json(task)
+    res.json(task)
+  } catch (error) {
+    res.status(error.status || 400).json({ message: error })
+  }
 }
 
-export const deleteTask = (req, res) => {
+export const deleteTask = async (req, res) => {
   try {
     const { id } = req.params
 
-    TaskModel.deleteTask(id)
+    await TaskModel.deleteTask(id)
 
-    res.status(200).json({ message: 'Deleted successfully' })
+    res.json({ message: 'Deleted successfully' })
   } catch (error) {
-    res.status(400).json({ message: error })
+    res.status(error.status || 400).json({ message: error.message })
   }
 }

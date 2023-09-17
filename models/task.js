@@ -56,7 +56,7 @@ export class TaskModel {
   static deleteTask (id) {
     const taskIndex = tasks.findIndex((task) => task.id === id)
 
-    if (taskIndex) {
+    if (taskIndex >= 0) {
       tasks.splice(taskIndex, 1)
 
       return tasks
