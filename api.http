@@ -1,0 +1,13 @@
+GET http://localhost:1234/tasks 
+###
+
+POST http://localhost:1234/tasks 
+content-type: application/json
+
+{
+    "description": "Second task"
+}
+
+###
+DELETE  http://localhost:1234/tasks/1
+
